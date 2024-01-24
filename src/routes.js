@@ -44,12 +44,26 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import Metrics from "layouts/metrics";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
-const routes = [
-  {
+
+function routes () {
+ 
+  // {
+  //   type: "collapse",
+  //   name: "Sign Up",
+  //   key: "sign-up",
+  //   icon: <Icon fontSize="small">assignment</Icon>,
+  //   route: "/authentication/sign-up",
+  //   component: <SignUp />,
+  // }
+  
+  var allRoutes=
+  [
+    {
     type: "collapse",
     name: "Dashboard",
     key: "dashboard",
@@ -67,28 +81,37 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Add Metric",
+    key: "metric",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/metrics",
+    component: <Metrics />,
+  },
+  
+  {
+    type: "collapse",
     name: "Billing",
     key: "billing",
     icon: <Icon fontSize="small">receipt_long</Icon>,
     route: "/billing",
     component: <Billing />,
   },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "RTL",
+  //   key: "rtl",
+  //   icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
+  //   route: "/rtl",
+  //   component: <RTL />,
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  // },
   {
     type: "collapse",
     name: "Profile",
@@ -97,22 +120,26 @@ const routes = [
     route: "/profile",
     component: <Profile />,
   },
-  {
+  
+  ]
+
+  var signInRoute;
+  console.log("Logged in ="+localStorage.getItem('loggedIn'))
+  if (!localStorage.getItem('loggedIn')){
+    console.log("Adding sign in ")
+    signInRoute ={
     type: "collapse",
     name: "Sign In",
     key: "sign-in",
     icon: <Icon fontSize="small">login</Icon>,
     route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
-  },
-];
+    component: <SignIn />
+    }
+
+    allRoutes.push(signInRoute)
+  };
+
+  return allRoutes;
+};
 
 export default routes;
